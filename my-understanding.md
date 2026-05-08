@@ -52,3 +52,20 @@
 Loading members...
 error message ถ้า API มีปัญหา
 ตารางข้อมูลสมาชิกถ้าโหลดสำเร็จ
+
+========================================================
+
+- เพิ่ม POST API สำหรับสร้าง member ใหม่
+- เพิ่ม isSaving เพื่อบอกว่ากำลัง Save อยู่
+- เพิ่ม createError เพื่อแสดง error ถ้า POST ไม่สำเร็จ
+- เพิ่ม handleCreateMember ใน App.jsx สำหรับส่ง POST ไปที่ API
+- เมื่อ API สร้างข้อมูลสำเร็จ จะเอา member ใหม่มาต่อท้าย members ทันที ทำให้ตารางอัปเดตโดยไม่ต้อง refresh
+- เปลี่ยน input ใน Admin เป็น controlled form ด้วย useState
+- เพิ่ม validation ถ้ากรอกไม่ครบ จะแสดง Please fill in all fields.
+
+ในไฟล์ App.jsx ใช้ fetch(API_URL, { method: "POST", ... }) เพื่อสร้าง member
+ใช้ setMembers((currentMembers) => [...currentMembers, createdMember]) เพื่อเพิ่มข้อมูลใหม่เข้า state เดิม
+
+ในไฟล์ AdminSection.jsx ใช้ formData เก็บค่า input ทั้ง 3 ช่อง
+handleChange อัพเดท state ตามช่องที่พิมพ์
+handleSubmit กันหน้า refresh, ตรวจว่ากรอกครบ, แล้วเรียก onCreateMember

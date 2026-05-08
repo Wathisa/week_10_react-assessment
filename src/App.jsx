@@ -14,6 +14,8 @@ function App() {
   const [members, setMembers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+  const [createError, setCreateError] = useState("");
 
   useEffect(() => {
     async function fetchMembers() {
@@ -49,6 +51,34 @@ function App() {
     setHomeSection(section);
   }
 
+  async function handleCreateMember(newMember) {
+    setIsSaving(true);
+    setCreateError("");
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newMember),
+      });
+
+      if (!response.ok) {
+        throw new Error("Cannot create member");
+      }
+
+      const createdMember = await response.json();
+      setMembers((currentMembers) => [...currentMembers, createdMember]);
+      return true;
+    } catch {
+      setCreateError("Cannot save member. Please try again.");
+      return false;
+    } finally {
+      setIsSaving(false);
+    }
+  }
+
   function renderPage() {
     if (page === "owner") {
       return <Owner />;
@@ -73,6 +103,9 @@ function App() {
           activeSection={homeSection}
           isLoading={isLoading}
           errorMessage={errorMessage}
+          isSaving={isSaving}
+          createError={createError}
+          onCreateMember={handleCreateMember}
           onSelectSection={handleSelectSection}
         />
       );
