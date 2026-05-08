@@ -6,6 +6,21 @@ import Owner from './components/Owner'
 import UserSection from './components/UserSection'
 import './App.css'
 
+const sampleMembers = [
+  {
+    id: '1',
+    name: 'Jane',
+    lastName: 'Doe',
+    position: 'Frontend Developer',
+  },
+  {
+    id: '2',
+    name: 'John',
+    lastName: 'Smith',
+    position: 'Backend Developer',
+  },
+]
+
 function App() {
   const [page, setPage] = useState('home')
   const [homeSection, setHomeSection] = useState('main')
@@ -29,11 +44,23 @@ function App() {
     }
 
     if (homeSection === 'user') {
-      return <UserSection />
+      return (
+        <UserSection
+          members={sampleMembers}
+          activeSection={homeSection}
+          onSelectSection={handleSelectSection}
+        />
+      )
     }
 
     if (homeSection === 'admin') {
-      return <AdminSection />
+      return (
+        <AdminSection
+          members={sampleMembers}
+          activeSection={homeSection}
+          onSelectSection={handleSelectSection}
+        />
+      )
     }
 
     return <Home onSelectSection={handleSelectSection} />
@@ -41,7 +68,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 text-black">
-      <Navbar onNavigate={handleNavigate} />
+      <Navbar activePage={page} onNavigate={handleNavigate} />
       {renderPage()}
     </div>
   )
