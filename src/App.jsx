@@ -16,6 +16,8 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [createError, setCreateError] = useState("");
+  const [deletingId, setDeletingId] = useState("");
+  const [deleteError, setDeleteError] = useState("");
 
   useEffect(() => {
     async function fetchMembers() {
@@ -79,6 +81,29 @@ function App() {
     }
   }
 
+  async function handleDeleteMember(memberId) {
+    setDeletingId(memberId);
+    setDeleteError("");
+
+    try {
+      const response = await fetch(`${API_URL}/${memberId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Cannot delete member");
+      }
+
+      setMembers((currentMembers) =>
+        currentMembers.filter((member) => member.id !== memberId)
+      );
+    } catch {
+      setDeleteError("Cannot delete member. Please try again.");
+    } finally {
+      setDeletingId("");
+    }
+  }
+
   function renderPage() {
     if (page === "owner") {
       return <Owner />;
@@ -105,7 +130,10 @@ function App() {
           errorMessage={errorMessage}
           isSaving={isSaving}
           createError={createError}
+          deletingId={deletingId}
+          deleteError={deleteError}
           onCreateMember={handleCreateMember}
+          onDeleteMember={handleDeleteMember}
           onSelectSection={handleSelectSection}
         />
       );

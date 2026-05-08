@@ -14,7 +14,10 @@ function AdminSection({
   errorMessage,
   isSaving,
   createError,
+  deletingId,
+  deleteError,
   onCreateMember,
+  onDeleteMember,
   onSelectSection,
 }) {
   const [formData, setFormData] = useState(initialFormData)
@@ -127,11 +130,19 @@ function AdminSection({
         )}
       </form>
 
+      {deleteError && (
+        <p className="mx-auto mt-8 max-w-4xl text-left text-red-500">
+          {deleteError}
+        </p>
+      )}
+
       <MemberTable
         members={members}
         showActions
         isLoading={isLoading}
         errorMessage={errorMessage}
+        deletingId={deletingId}
+        onDeleteMember={onDeleteMember}
       />
     </main>
   )

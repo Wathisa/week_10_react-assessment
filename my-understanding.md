@@ -69,3 +69,15 @@ error message ถ้า API มีปัญหา
 ในไฟล์ AdminSection.jsx ใช้ formData เก็บค่า input ทั้ง 3 ช่อง
 handleChange อัพเดท state ตามช่องที่พิมพ์
 handleSubmit กันหน้า refresh, ตรวจว่ากรอกครบ, แล้วเรียก onCreateMember
+
+========================================================
+
+ทำ DELETE API
+
+- เพิ่ม deletingId เพื่อรู้ว่ากำลังลบ member คนไหนอยู่
+- เพิ่ม deleteError เพื่อแสดง error ถ้าลบไม่สำเร็จ
+- เพิ่ม handleDeleteMember(memberId) ใน App.jsx
+- ส่ง onDeleteMember จาก App ไป AdminSection แล้วต่อไป MemberTable
+- ปุ่ม Delete เรียก onDeleteMember(member.id)
+- ถ้า DELETE สำเร็จ ใช้ filter ลบ member คนนั้นออกจาก state ตารางเลย
+  ระหว่างลบ ปุ่มของแถวนั้นจะเปลี่ยนเป็น Deleting...

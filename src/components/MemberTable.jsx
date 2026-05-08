@@ -1,4 +1,11 @@
-function MemberTable({ members, showActions = false, isLoading, errorMessage }) {
+function MemberTable({
+  members,
+  showActions = false,
+  isLoading,
+  errorMessage,
+  deletingId = '',
+  onDeleteMember,
+}) {
   const columnCount = showActions ? 4 : 3
 
   return (
@@ -48,8 +55,13 @@ function MemberTable({ members, showActions = false, isLoading, errorMessage }) 
                   </td>
                   {showActions && (
                     <td className="border border-gray-300 px-6 py-3">
-                      <button type="button" className="font-bold text-red-500">
-                        Delete
+                      <button
+                        type="button"
+                        disabled={deletingId === member.id}
+                        onClick={() => onDeleteMember(member.id)}
+                        className="font-bold text-red-500 transition hover:text-red-700 disabled:cursor-not-allowed disabled:text-red-300"
+                      >
+                        {deletingId === member.id ? 'Deleting...' : 'Delete'}
                       </button>
                     </td>
                   )}
