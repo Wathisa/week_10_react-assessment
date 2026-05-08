@@ -23,9 +23,9 @@ function AdminSection({
   const [formData, setFormData] = useState(initialFormData)
   const [formError, setFormError] = useState('')
   const normalButtonClass =
-    'rounded-md bg-white px-8 py-5 text-lg font-bold shadow-md transition hover:-translate-y-0.5 hover:shadow-lg'
+    'rounded-lg border border-slate-200 bg-white px-8 py-5 text-lg font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md'
   const activeButtonClass =
-    'rounded-md bg-gray-900 px-8 py-5 text-lg font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg'
+    'rounded-lg border border-slate-900 bg-slate-900 px-8 py-5 text-lg font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-md'
 
   function handleChange(event) {
     const { name, value } = event.target
@@ -60,14 +60,14 @@ function AdminSection({
   }
 
   return (
-    <main className="px-6 py-16 text-center">
-      <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
+    <main className="mx-auto max-w-6xl px-6 py-16 text-center">
+      <h1 className="text-4xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-5xl md:text-6xl">
         Generation Thailand
         <br />
         Home - Admin Section
       </h1>
 
-      <div className="mt-14 flex flex-wrap justify-center gap-10 sm:gap-20">
+      <div className="mt-12 flex flex-wrap justify-center gap-5 sm:gap-8">
         <button
           type="button"
           onClick={() => onSelectSection('user')}
@@ -88,8 +88,13 @@ function AdminSection({
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className="mx-auto mt-14 max-w-6xl text-left">
-        <h2 className="text-2xl font-bold">Create User Here</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="mx-auto mt-14 rounded-xl border border-slate-200 bg-white p-6 text-left shadow-sm"
+      >
+        <h2 className="text-2xl font-semibold text-slate-950">
+          Create User Here
+        </h2>
 
         <div className="mt-6 grid gap-6 md:grid-cols-[1fr_1fr_1fr_auto]">
           <input
@@ -98,7 +103,7 @@ function AdminSection({
             value={formData.name}
             onChange={handleChange}
             placeholder="Name"
-            className="rounded-md bg-white px-5 py-4 text-lg outline-none"
+            className="rounded-lg border border-slate-200 bg-slate-50 px-5 py-4 text-lg outline-none transition focus:border-slate-400 focus:bg-white"
           />
           <input
             type="text"
@@ -106,7 +111,7 @@ function AdminSection({
             value={formData.lastname}
             onChange={handleChange}
             placeholder="Last Name"
-            className="rounded-md bg-white px-5 py-4 text-lg outline-none"
+            className="rounded-lg border border-slate-200 bg-slate-50 px-5 py-4 text-lg outline-none transition focus:border-slate-400 focus:bg-white"
           />
           <input
             type="text"
@@ -114,12 +119,12 @@ function AdminSection({
             value={formData.position}
             onChange={handleChange}
             placeholder="Position"
-            className="rounded-md bg-white px-5 py-4 text-lg outline-none"
+            className="rounded-lg border border-slate-200 bg-slate-50 px-5 py-4 text-lg outline-none transition focus:border-slate-400 focus:bg-white"
           />
           <button
             type="submit"
             disabled={isSaving}
-            className="rounded-md bg-indigo-500 px-8 py-4 text-lg text-white transition hover:bg-indigo-600 disabled:cursor-not-allowed disabled:bg-indigo-300"
+            className="rounded-lg bg-indigo-600 px-8 py-4 text-lg font-medium text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-indigo-300"
           >
             {isSaving ? 'Saving...' : 'Save'}
           </button>

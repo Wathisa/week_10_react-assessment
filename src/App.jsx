@@ -4,7 +4,6 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Owner from "./components/Owner";
 import UserSection from "./components/UserSection";
-import "./App.css";
 
 const API_URL = "https://69fda8a130ad0a6fd1c1355f.mockapi.io/members";
 
@@ -143,7 +142,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 text-black">
+    <div className="min-h-screen bg-[#f5f7fb] text-slate-900">
       <Navbar activePage={page} onNavigate={handleNavigate} />
       {renderPage()}
     </div>

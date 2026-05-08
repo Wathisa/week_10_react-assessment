@@ -1,9 +1,11 @@
 function Navbar({ activePage, onNavigate }) {
-  const normalLinkClass = 'border-b-2 border-transparent pb-1 transition hover:text-gray-500'
-  const activeLinkClass = 'border-b-2 border-black pb-1 transition hover:text-gray-500'
+  const normalLinkClass =
+    'rounded-md px-5 py-2 text-slate-600 transition hover:bg-slate-100 hover:text-slate-950'
+  const activeLinkClass =
+    'rounded-md bg-slate-900 px-5 py-2 text-white shadow-sm transition hover:bg-slate-800'
 
   return (
-    <nav className="flex justify-end gap-10 border-b border-black px-10 py-6 text-xl font-bold">
+    <nav className="sticky top-0 z-10 flex justify-end gap-3 border-b border-slate-200 bg-white/85 px-6 py-4 text-base font-semibold shadow-sm backdrop-blur sm:px-10">
       <button
         type="button"
         onClick={() => onNavigate('home')}

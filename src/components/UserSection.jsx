@@ -1,20 +1,26 @@
 import MemberTable from './MemberTable'
 
-function UserSection({ members, activeSection, isLoading, errorMessage, onSelectSection }) {
+function UserSection({
+  members,
+  activeSection,
+  isLoading,
+  errorMessage,
+  onSelectSection,
+}) {
   const normalButtonClass =
-    'rounded-md bg-white px-8 py-5 text-lg font-bold shadow-md transition hover:-translate-y-0.5 hover:shadow-lg'
+    'rounded-lg border border-slate-200 bg-white px-8 py-5 text-lg font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md'
   const activeButtonClass =
-    'rounded-md bg-gray-900 px-8 py-5 text-lg font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg'
+    'rounded-lg border border-slate-900 bg-slate-900 px-8 py-5 text-lg font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-md'
 
   return (
-    <main className="px-6 py-20 text-center">
-      <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
+    <main className="mx-auto max-w-6xl px-6 py-16 text-center sm:py-20">
+      <h1 className="text-4xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-5xl md:text-6xl">
         Generation Thailand
         <br />
         Home - User Section
       </h1>
 
-      <div className="mt-14 flex flex-wrap justify-center gap-10 sm:gap-20">
+      <div className="mt-12 flex flex-wrap justify-center gap-5 sm:gap-8">
         <button
           type="button"
           onClick={() => onSelectSection('user')}
