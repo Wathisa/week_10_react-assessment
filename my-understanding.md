@@ -81,3 +81,12 @@ handleSubmit กันหน้า refresh, ตรวจว่ากรอกค
 - ปุ่ม Delete เรียก onDeleteMember(member.id)
 - ถ้า DELETE สำเร็จ ใช้ filter ลบ member คนนั้นออกจาก state ตารางเลย
   ระหว่างลบ ปุ่มของแถวนั้นจะเปลี่ยนเป็น Deleting...
+
+ใน App.jsx ใช้ URL แบบ ${API_URL}/${memberId} เพื่อยิง DELETE /members/:memberId
+ใช้ filter เพื่อเก็บเฉพาะ member ที่ id ไม่ตรงกับตัวที่ลบ
+
+ใน MemberTable.jsx ปุ่ม Delete ส่ง member.id กลับขึ้นไปให้ parent จัดการ API
+
+========================================================
+
+เปลี่ยนข้อมูลและเพิ่มรูปภาพในหน้า Owner
