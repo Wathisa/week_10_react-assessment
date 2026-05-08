@@ -34,3 +34,21 @@
 หลักการทำงาน คือ App.jsx ส่ง activeSection={homeSection} ไปให้ UserSection และ AdminSection
 ใน UserSection/AdminSection มี class 2 แบบคือ normalButtonClass สำหรับปุ่มปกติ และ activeButtonClass สำหรับปุ่มที่ถูกเลือก
 ใช้ ternary เช่น activeSection === 'user' ? activeButtonClass : normalButtonClass เพื่อเลือก style
+
+========================================================
+
+เพิ่ม useEffect ใน App.jsx เพื่อ fetch ข้อมูลสมาชิกตอนเว็บโหลดครั้งแรก
+เพิ่ม state ใหม่คือ
+
+- members เก็บข้อมูลสมาชิกจาก API
+- isLoading เช็คว่ากำลังโหลดอยู่ไหม
+- errorMessage เก็บข้อความ error ถ้า fetch ไม่สำเร็จ
+
+เอา sampleMembers ออก แล้วใช้ข้อมูลจริงจาก API แทน
+
+ส่ง members, isLoading, errorMessage ผ่าน props ไปที่ UserSection และ AdminSection
+
+ปรับ MemberTable ให้แสดง 3 สถานะ:
+Loading members...
+error message ถ้า API มีปัญหา
+ตารางข้อมูลสมาชิกถ้าโหลดสำเร็จ

@@ -1,4 +1,6 @@
-function MemberTable({ members, showActions = false }) {
+function MemberTable({ members, showActions = false, isLoading, errorMessage }) {
+  const columnCount = showActions ? 4 : 3
+
   return (
     <div className="mx-auto mt-16 max-w-4xl text-left">
       <div className="overflow-hidden rounded-md border border-gray-300 bg-white">
@@ -15,24 +17,52 @@ function MemberTable({ members, showActions = false }) {
           </thead>
 
           <tbody>
-            {members.map((member) => (
-              <tr key={member.id}>
-                <td className="border border-gray-300 px-6 py-3">{member.name}</td>
-                <td className="border border-gray-300 px-6 py-3">
-                  {member.lastName}
+            {isLoading && (
+              <tr>
+                <td colSpan={columnCount} className="px-6 py-5 text-gray-500">
+                  Loading members...
                 </td>
-                <td className="border border-gray-300 px-6 py-3">
-                  {member.position}
-                </td>
-                {showActions && (
-                  <td className="border border-gray-300 px-6 py-3">
-                    <button type="button" className="font-bold text-red-500">
-                      Delete
-                    </button>
-                  </td>
-                )}
               </tr>
-            ))}
+            )}
+
+            {!isLoading && errorMessage && (
+              <tr>
+                <td colSpan={columnCount} className="px-6 py-5 text-red-500">
+                  {errorMessage}
+                </td>
+              </tr>
+            )}
+
+            {!isLoading &&
+              !errorMessage &&
+              members.map((member) => (
+                <tr key={member.id}>
+                  <td className="border border-gray-300 px-6 py-3">
+                    {member.name}
+                  </td>
+                  <td className="border border-gray-300 px-6 py-3">
+                    {member.lastName || member.lastname}
+                  </td>
+                  <td className="border border-gray-300 px-6 py-3">
+                    {member.position}
+                  </td>
+                  {showActions && (
+                    <td className="border border-gray-300 px-6 py-3">
+                      <button type="button" className="font-bold text-red-500">
+                        Delete
+                      </button>
+                    </td>
+                  )}
+                </tr>
+              ))}
+
+            {!isLoading && !errorMessage && members.length === 0 && (
+              <tr>
+                <td colSpan={columnCount} className="px-6 py-5 text-gray-500">
+                  No members found.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

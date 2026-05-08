@@ -1,6 +1,6 @@
 import MemberTable from './MemberTable'
 
-function UserSection({ members, activeSection, onSelectSection }) {
+function UserSection({ members, activeSection, isLoading, errorMessage, onSelectSection }) {
   const normalButtonClass =
     'rounded-md bg-white px-8 py-5 text-lg font-bold shadow-md transition hover:-translate-y-0.5 hover:shadow-lg'
   const activeButtonClass =
@@ -35,7 +35,11 @@ function UserSection({ members, activeSection, onSelectSection }) {
         </button>
       </div>
 
-      <MemberTable members={members} />
+      <MemberTable
+        members={members}
+        isLoading={isLoading}
+        errorMessage={errorMessage}
+      />
     </main>
   )
 }

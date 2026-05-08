@@ -1,6 +1,12 @@
 import MemberTable from './MemberTable'
 
-function AdminSection({ members, activeSection, onSelectSection }) {
+function AdminSection({
+  members,
+  activeSection,
+  isLoading,
+  errorMessage,
+  onSelectSection,
+}) {
   const normalButtonClass =
     'rounded-md bg-white px-8 py-5 text-lg font-bold shadow-md transition hover:-translate-y-0.5 hover:shadow-lg'
   const activeButtonClass =
@@ -71,7 +77,12 @@ function AdminSection({ members, activeSection, onSelectSection }) {
         </div>
       </form>
 
-      <MemberTable members={members} showActions />
+      <MemberTable
+        members={members}
+        showActions
+        isLoading={isLoading}
+        errorMessage={errorMessage}
+      />
     </main>
   )
 }
